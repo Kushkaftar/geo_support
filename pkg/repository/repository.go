@@ -1,11 +1,11 @@
 package repository
 
-type Domains struct {
+import "github.com/jmoiron/sqlx"
 
+type Domains struct {
 }
 
 type Prices struct {
-
 }
 
 type Repository struct {
@@ -13,6 +13,6 @@ type Repository struct {
 	Prices
 }
 
-func NewRepository() *Repository {
+func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{}
 }

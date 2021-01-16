@@ -1,0 +1,9 @@
+{
+  "bind_addr": "8080",
+  "db": {
+    "host": "localhost",
+    "port": "3306",
+    "user": "root",
+    "name": "geo_support"
+  }
+}
