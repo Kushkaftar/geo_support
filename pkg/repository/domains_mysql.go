@@ -42,14 +42,14 @@ func (d DomainsMysql) CheckDomain(domain string) (int, error) {
 	return req, err
 }
 
-func (d *DomainsMysql) SetFlag([]modelsStruct.Domain) error {
+func (d *DomainsMysql) SetFlag(flag, id int) error {
 
-	//query := fmt.Sprintf("INSERT INTO %s (domain_name) VALUES (?);", domainsTable)
-	//row := d.db.QueryRow(query, domain)
-	//
-	//if err := row.Err(); err != nil {
-	//	return err
-	//}
+	query := fmt.Sprintf("UPDATE %s SET checked=? WHERE id=?;", domainsTable)
+	row := d.db.QueryRow(query, flag, id)
+
+	if err := row.Err(); err != nil {
+		return err
+	}
 
 	return nil
 }

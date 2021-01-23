@@ -51,3 +51,7 @@ func (rds ReturnDomainsService) CheckDomain(domain string) (int, error) {
 func (rds ReturnDomainsService) InsertDomain(domain string) error {
 	return rds.repo.InsertDomain(domain)
 }
+
+func (rds ReturnDomainsService) SetFlag(flag, id int) error {
+	return rds.repo.SetFlag(flag, id)
+}
