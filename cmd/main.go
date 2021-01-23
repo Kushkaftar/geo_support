@@ -6,22 +6,22 @@ import (
 	"github.com/Kushkaftar/geo_support/pkg/repository"
 	"github.com/Kushkaftar/geo_support/pkg/service"
 	"github.com/joho/godotenv"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"log"
 	"os"
 )
 
 func main() {
 
-	// инициируем конигурацию
+	// инициируем конифгурацию
 	if err := initConfig(); err != nil {
-		log.Fatalf("error read config: %s", err.Error())
+		logrus.Fatalf("error read config: %s", err.Error())
 	}
 
 	// иницируем переменные env
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Error loading .env file: %s", err.Error())
+		logrus.Fatalf("Error loading .env file: %s", err.Error())
 	}
 
 	db, err := repository.NewMysqlDB(repository.Config{
@@ -32,7 +32,7 @@ func main() {
 		DBName:   viper.GetString("db.name"),
 	})
 	if err != nil {
-		log.Fatalf("error connect to Data Base: %s", err.Error())
+		logrus.Fatalf("error connect to Data Base: %s", err.Error())
 	}
 
 	repos := repository.NewRepository(db)
@@ -41,7 +41,7 @@ func main() {
 
 	srv := new(GEO_Support.Server)
 	if err := srv.Run(viper.GetString("bind_addr"), handlers.InitRoutes()); err != nil {
-		log.Fatalf("error run server: %s", err.Error())
+		logrus.Fatalf("error run server: %s", err.Error())
 	}
 
 }

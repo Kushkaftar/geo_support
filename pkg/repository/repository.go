@@ -1,18 +1,25 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"github.com/jmoiron/sqlx"
+)
 
-type Domains struct {
+type Domains interface {
+	GetAllDomains() ([]modelsStruct.Domain, error)
+	InsertDomain(domain string) error
+	CheckDomain(domain string) (int, error)
 }
 
-type Prices struct {
+type Prices interface {
 }
 
 type Repository struct {
 	Domains
-	Prices
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
-	return &Repository{}
+	return &Repository{
+		Domains: NewDomainsMysql(db),
+	}
 }

@@ -1,20 +1,25 @@
 package service
 
-import "github.com/Kushkaftar/geo_support/pkg/repository"
+import (
+	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"github.com/Kushkaftar/geo_support/pkg/repository"
+)
 
-type Domains struct {
-
+type Domains interface {
+	GetAllDomains() ([]modelsStruct.Domain, error)
+	InsertDomain(domain string) error
+	CheckDomain(domain string) (int, error)
 }
 
-type Prices struct {
-
+type Prices interface {
 }
 
 type Service struct {
 	Domains
-	Prices
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Domains: NewReturnDomainsService(repos.Domains),
+	}
 }
