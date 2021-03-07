@@ -6,8 +6,14 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+type MyError struct{}
+
 type DomainsMysql struct {
 	db *sqlx.DB
+}
+
+func (m *MyError) Error() string {
+	return " id domain is missing"
 }
 
 func NewDomainsMysql(db *sqlx.DB) *DomainsMysql {
@@ -43,11 +49,24 @@ func (d DomainsMysql) CheckDomain(domain string) (int, error) {
 }
 
 func (d *DomainsMysql) SetFlag(flag, id int) error {
+	var check int
+
+	queryChek := fmt.Sprintf("SELECT COUNT(1) FROM %s WHERE id=?;", domainsTable)
+	err := d.db.Get(&check, queryChek, id)
+	if err != nil {
+		return err
+	}
+
+	if check == 0 {
+		return &MyError{}
+	}
+
 
 	query := fmt.Sprintf("UPDATE %s SET checked=? WHERE id=?;", domainsTable)
-	row := d.db.QueryRow(query, flag, id)
+	_, err = d.db.Exec(query, flag, id)
 
-	if err := row.Err(); err != nil {
+	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 

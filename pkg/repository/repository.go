@@ -15,12 +15,20 @@ type Domains interface {
 type Prices interface {
 }
 
+type Offer interface {
+	SetOfferName(n modelsStruct.Name) error
+	GetOfferName(id int) (string, error)
+}
+
 type Repository struct {
 	Domains
+	Offer
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Domains: NewDomainsMysql(db),
+		Offer: NewOfferMysql(db),
+
 	}
 }

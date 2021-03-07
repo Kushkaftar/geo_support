@@ -13,14 +13,22 @@ type Domains interface {
 }
 
 type Prices interface {
+
+}
+
+type Offer interface {
+	SetOfferName(n modelsStruct.Name) error
+	GetOfferName(id int) (string, error)
 }
 
 type Service struct {
 	Domains
+	Offer
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Domains: NewReturnDomainsService(repos.Domains),
+		Offer: NewReturnOfferService(repos.Offer),
 	}
 }

@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"github.com/Kushkaftar/geo_support/modelsStruct"
 	"github.com/Kushkaftar/geo_support/pkg/repository"
 	"github.com/Kushkaftar/geo_support/pkg/workingLogic/folders"
@@ -27,7 +26,7 @@ func (rds *ReturnDomainsService) GetAllDomains() ([]modelsStruct.Domain, error) 
 		return nil, err
 	}
 	for _, value := range domains {
-		fmt.Println(value)
+		//fmt.Println(value)
 		req, err := rds.CheckDomain(value)
 		if err != nil {
 			return nil, err
@@ -39,7 +38,7 @@ func (rds *ReturnDomainsService) GetAllDomains() ([]modelsStruct.Domain, error) 
 				return nil, err
 			}
 		}
-		fmt.Println(req)
+		//fmt.Println(req)
 	}
 	return rds.repo.GetAllDomains()
 }

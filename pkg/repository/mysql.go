@@ -8,6 +8,7 @@ import (
 
 const (
 	domainsTable = "domain"
+	offerNameTable = "offer_names"
 )
 
 type Config struct {

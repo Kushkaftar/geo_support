@@ -8,7 +8,7 @@ type Domain struct {
 }
 
 type Domains struct {
-	Domains []Domain
+	Domains []Domain `json:"domains"`
 }
 
 type Flag struct {
