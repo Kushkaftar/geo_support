@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"github.com/Kushkaftar/geo_support/modelsstruct"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -18,8 +18,8 @@ func NewPricesMysql(db *sqlx.DB) *PricesMysql {
 }
 
 // GetAllPrices ...
-func (p *PricesMysql) GetAllPrices() ([]modelsStruct.Price, error) {
-	var prices []modelsStruct.Price
+func (p *PricesMysql) GetAllPrices() ([]modelsstruct.Price, error) {
+	var prices []modelsstruct.Price
 
 	query := fmt.Sprintf("SELECT * FROM %s", pricesTable)
 

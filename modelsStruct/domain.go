@@ -1,4 +1,4 @@
-package modelsStruct
+package modelsstruct
 
 type Domain struct {
 	Id      int    `json:"id" db:"id"`

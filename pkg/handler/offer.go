@@ -2,14 +2,15 @@ package handler
 
 import (
 	"fmt"
-	"github.com/Kushkaftar/geo_support/modelsStruct"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+
+	"github.com/Kushkaftar/geo_support/modelsstruct"
+	"github.com/gin-gonic/gin"
 )
 
-func (h *Handler) setName (c *gin.Context)  {
-	var n modelsStruct.Name
+func (h *Handler) setName(c *gin.Context) {
+	var n modelsstruct.Name
 
 	domainId := c.Param("id")
 
@@ -33,8 +34,7 @@ func (h *Handler) setName (c *gin.Context)  {
 	})
 }
 
-func (h *Handler) getName (c *gin.Context)  {
-
+func (h *Handler) getName(c *gin.Context) {
 
 	// временная заглушка
 	c.JSON(http.StatusOK, map[string]interface{}{
@@ -42,8 +42,7 @@ func (h *Handler) getName (c *gin.Context)  {
 	})
 }
 
-func (h *Handler) getOffers (c *gin.Context)  {
-
+func (h *Handler) getOffers(c *gin.Context) {
 
 	// временная заглушка
 	c.JSON(http.StatusOK, map[string]interface{}{

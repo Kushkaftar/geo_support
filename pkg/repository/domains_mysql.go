@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"github.com/Kushkaftar/geo_support/modelsstruct"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -23,8 +23,8 @@ func NewDomainsMysql(db *sqlx.DB) *DomainsMysql {
 	return &DomainsMysql{db: db}
 }
 
-func (d *DomainsMysql) GetAllDomains() ([]modelsStruct.Domain, error) {
-	var domains []modelsStruct.Domain
+func (d *DomainsMysql) GetAllDomains() ([]modelsstruct.Domain, error) {
+	var domains []modelsstruct.Domain
 
 	query := fmt.Sprintf("SELECT * FROM %s", domainsTable)
 

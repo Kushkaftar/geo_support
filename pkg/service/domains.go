@@ -1,11 +1,12 @@
 package service
 
 import (
-	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"os"
+
+	"github.com/Kushkaftar/geo_support/modelsstruct"
 	"github.com/Kushkaftar/geo_support/pkg/repository"
 	"github.com/Kushkaftar/geo_support/pkg/workingLogic/folders"
 	"github.com/sirupsen/logrus"
-	"os"
 )
 
 type ReturnDomainsService struct {
@@ -16,7 +17,7 @@ func NewReturnDomainsService(repo repository.Domains) *ReturnDomainsService {
 	return &ReturnDomainsService{repo: repo}
 }
 
-func (rds *ReturnDomainsService) GetAllDomains() ([]modelsStruct.Domain, error) {
+func (rds *ReturnDomainsService) GetAllDomains() ([]modelsstruct.Domain, error) {
 
 	// лапша стайл(((
 	path := folders.NewPath(os.Getenv("PATH_REPOSITORY"))

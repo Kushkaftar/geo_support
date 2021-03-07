@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"github.com/Kushkaftar/geo_support/modelsstruct"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -13,7 +13,7 @@ func NewOfferMysql(db *sqlx.DB) *OfferMysql {
 	return &OfferMysql{db: db}
 }
 
-func (o OfferMysql) SetOfferName(n modelsStruct.Name) error {
+func (o OfferMysql) SetOfferName(n modelsstruct.Name) error {
 	return nil
 }
 

@@ -1,14 +1,15 @@
 package handler
 
 import (
-	"github.com/Kushkaftar/geo_support/modelsStruct"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+
+	"github.com/Kushkaftar/geo_support/modelsstruct"
+	"github.com/gin-gonic/gin"
 )
 
 func (h *Handler) setFlagDomain(c *gin.Context) {
-	var f modelsStruct.Flag
+	var f modelsstruct.Flag
 
 	//c.Header("Access-Control-Allow-Origin", "*")
 	//c.Header("Access-Control-Allow-Headers", "access-control-allow-origin, access-control-allow-headers")
@@ -43,7 +44,7 @@ func (h *Handler) setFlagDomain(c *gin.Context) {
 }
 
 func (h *Handler) getAllDomains(c *gin.Context) {
-	var ds modelsStruct.Domains
+	var ds modelsstruct.Domains
 
 	domains, err := h.services.Domains.GetAllDomains()
 	if err != nil {

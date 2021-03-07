@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"github.com/Kushkaftar/geo_support/modelsstruct"
 	"github.com/Kushkaftar/geo_support/pkg/repository"
 )
 
@@ -16,6 +16,6 @@ func NewReturnPriceService(repo repository.Prices) *ReturnPriceService {
 }
 
 // GetAllPrices ...
-func (s *ReturnPriceService) GetAllPrices() ([]modelsStruct.Price, error) {
+func (s *ReturnPriceService) GetAllPrices() ([]modelsstruct.Price, error) {
 	return s.repo.GetAllPrices()
 }

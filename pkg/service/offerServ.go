@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/Kushkaftar/geo_support/modelsStruct"
+	"github.com/Kushkaftar/geo_support/modelsstruct"
 	"github.com/Kushkaftar/geo_support/pkg/repository"
 )
 
@@ -13,7 +13,7 @@ func NewReturnOfferService(repo repository.Offer) *ReturnOfferService {
 	return &ReturnOfferService{repo: repo}
 }
 
-func (ros ReturnOfferService) SetOfferName(n modelsStruct.Name) error {
+func (ros ReturnOfferService) SetOfferName(n modelsstruct.Name) error {
 	return ros.SetOfferName(n)
 }
 
