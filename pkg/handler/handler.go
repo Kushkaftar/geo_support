@@ -34,6 +34,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			prices := domains.Group(":id/prices")
 			{
 				prices.GET("/", h.getAllPrices)
+				prices.POST("/set_price", h.setPrices)
 			}
 		}
 	}
@@ -42,7 +43,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 }
 
 func cors(c *gin.Context) {
-		c.Header("Content-Type", "application/json")
-		c.Header("Access-Control-Allow-Origin", "*")
-		c.Header("Access-Control-Allow-Methods", "POST, GET")
+	c.Header("Content-Type", "application/json")
+	c.Header("Access-Control-Allow-Origin", "*")
+	c.Header("Access-Control-Allow-Methods", "POST, GET")
 }

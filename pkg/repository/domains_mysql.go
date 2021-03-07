@@ -2,12 +2,15 @@ package repository
 
 import (
 	"fmt"
+
 	"github.com/Kushkaftar/geo_support/modelsStruct"
 	"github.com/jmoiron/sqlx"
 )
 
+// MyError ...
 type MyError struct{}
 
+// DomainsMysql ...
 type DomainsMysql struct {
 	db *sqlx.DB
 }
@@ -60,7 +63,6 @@ func (d *DomainsMysql) SetFlag(flag, id int) error {
 	if check == 0 {
 		return &MyError{}
 	}
-
 
 	query := fmt.Sprintf("UPDATE %s SET checked=? WHERE id=?;", domainsTable)
 	_, err = d.db.Exec(query, flag, id)

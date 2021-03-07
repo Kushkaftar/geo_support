@@ -13,7 +13,7 @@ type Domains interface {
 }
 
 type Prices interface {
-
+	GetAllPrices() (modelsStruct.Prices, error)
 }
 
 type Offer interface {
@@ -24,11 +24,13 @@ type Offer interface {
 type Service struct {
 	Domains
 	Offer
+	Prices
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Domains: NewReturnDomainsService(repos.Domains),
-		Offer: NewReturnOfferService(repos.Offer),
+		Offer:   NewReturnOfferService(repos.Offer),
+		Prices:  NewReturnPriceService(repos.Prices),
 	}
 }
