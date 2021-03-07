@@ -13,7 +13,7 @@ type Domains interface {
 }
 
 type Prices interface {
-	GetAllPrices() (modelsStruct.Prices, error)
+	GetAllPrices() ([]modelsStruct.Price, error)
 }
 
 type Offer interface {

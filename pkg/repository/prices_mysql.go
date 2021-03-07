@@ -18,8 +18,8 @@ func NewPricesMysql(db *sqlx.DB) *PricesMysql {
 }
 
 // GetAllPrices ...
-func (p *PricesMysql) GetAllPrices() (modelsStruct.Prices, error) {
-	var prices modelsStruct.Prices
+func (p *PricesMysql) GetAllPrices() ([]modelsStruct.Price, error) {
+	var prices []modelsStruct.Price
 
 	query := fmt.Sprintf("SELECT * FROM %s", pricesTable)
 
