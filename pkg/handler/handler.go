@@ -5,14 +5,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Handler ...
 type Handler struct {
 	services *service.Service
 }
 
+// NewHandler ...
 func NewHandler(services *service.Service) *Handler {
 	return &Handler{services: services}
 }
 
+// InitRoutes ...
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 	//gin.SetMode(gin.ReleaseMode)
@@ -30,12 +33,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 				offer.GET("/get_name", h.getName)
 				offer.GET("/", h.getOffers)
 			}
-
-			prices := domains.Group(":id/prices")
-			{
-				prices.GET("/", h.getAllPrices)
-				prices.POST("/set_price", h.setPrices)
-			}
+		}
+		prices := api.Group("/prices")
+		{
+			prices.GET("/", h.getAllPrices)
+			prices.POST("/set_price", h.setPrices)
+			prices.POST("/update_price", h.updatePrices)
 		}
 	}
 

@@ -8,14 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// setFlagDomain ...
 func (h *Handler) setFlagDomain(c *gin.Context) {
 	var f modelsstruct.Flag
 
 	//c.Header("Access-Control-Allow-Origin", "*")
 	//c.Header("Access-Control-Allow-Headers", "access-control-allow-origin, access-control-allow-headers")
 
-	domainId := c.Param("id")
-	id, err := strconv.Atoi(domainId)
+	domainID := c.Param("id")
+	id, err := strconv.Atoi(domainID)
 	if err != nil {
 		newErrorResponse(c, http.StatusBadRequest, "invalid param id"+err.Error())
 		return
@@ -39,10 +40,11 @@ func (h *Handler) setFlagDomain(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"setFlagDomain": "test",
+		"setFlagDomain": "ok",
 	})
 }
 
+// getAllDomains ...
 func (h *Handler) getAllDomains(c *gin.Context) {
 	var ds modelsstruct.Domains
 

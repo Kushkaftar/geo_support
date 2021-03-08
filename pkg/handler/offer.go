@@ -12,9 +12,9 @@ import (
 func (h *Handler) setName(c *gin.Context) {
 	var n modelsstruct.Name
 
-	domainId := c.Param("id")
+	domainID := c.Param("id")
 
-	id, err := strconv.Atoi(domainId)
+	id, err := strconv.Atoi(domainID)
 	if err != nil {
 		newErrorResponse(c, http.StatusBadRequest, "invalid param id"+err.Error())
 		return

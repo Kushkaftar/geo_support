@@ -19,3 +19,8 @@ func NewReturnPriceService(repo repository.Prices) *ReturnPriceService {
 func (s *ReturnPriceService) GetAllPrices() ([]modelsstruct.Price, error) {
 	return s.repo.GetAllPrices()
 }
+
+// UpdatePrice ...
+func (s *ReturnPriceService) UpdatePrice(pr modelsstruct.Price) (int, error) {
+	return s.repo.UpdatePrice(pr)
+}

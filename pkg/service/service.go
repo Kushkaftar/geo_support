@@ -5,6 +5,7 @@ import (
 	"github.com/Kushkaftar/geo_support/pkg/repository"
 )
 
+// Domains ...
 type Domains interface {
 	GetAllDomains() ([]modelsstruct.Domain, error)
 	InsertDomain(domain string) error
@@ -12,21 +13,26 @@ type Domains interface {
 	SetFlag(flag, id int) error
 }
 
+// Prices ...
 type Prices interface {
 	GetAllPrices() ([]modelsstruct.Price, error)
+	UpdatePrice(pr modelsstruct.Price) (int, error)
 }
 
+// Offer ...
 type Offer interface {
 	SetOfferName(n modelsstruct.Name) error
 	GetOfferName(id int) (string, error)
 }
 
+// Service ...
 type Service struct {
 	Domains
 	Offer
 	Prices
 }
 
+// NewService ...
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Domains: NewReturnDomainsService(repos.Domains),

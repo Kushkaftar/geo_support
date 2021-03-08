@@ -5,6 +5,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+// Domains ...
 type Domains interface {
 	GetAllDomains() ([]modelsstruct.Domain, error)
 	InsertDomain(domain string) error
@@ -12,21 +13,26 @@ type Domains interface {
 	SetFlag(flag, id int) error
 }
 
+// Prices ...
 type Prices interface {
 	GetAllPrices() ([]modelsstruct.Price, error)
+	UpdatePrice(pr modelsstruct.Price) (int, error)
 }
 
+// Offer ...
 type Offer interface {
 	SetOfferName(n modelsstruct.Name) error
 	GetOfferName(id int) (string, error)
 }
 
+//Repository ...
 type Repository struct {
 	Domains
 	Offer
 	Prices
 }
 
+// NewRepository ...
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Domains: NewDomainsMysql(db),
