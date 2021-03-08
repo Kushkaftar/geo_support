@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	GEO_Support "github.com/Kushkaftar/geo_support"
 	"github.com/Kushkaftar/geo_support/pkg/handler"
 	"github.com/Kushkaftar/geo_support/pkg/repository"
@@ -8,8 +10,14 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"os"
 )
+
+// @title GEO Support API
+// @version 0.01
+// @description Helper to add price.js
+
+// @host localhost:8080
+// @BasePath /
 
 func main() {
 

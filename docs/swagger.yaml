@@ -1,0 +1,68 @@
+basePath: /svgg/v1
+definitions:
+  modelsstruct.Domain:
+    properties:
+      created_at:
+        type: string
+      flag:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  modelsstruct.Domains:
+    properties:
+      domains:
+        items:
+          $ref: '#/definitions/modelsstruct.Domain'
+        type: array
+    type: object
+  modelsstruct.Flag:
+    properties:
+      set_flag:
+        type: integer
+    required:
+    - set_flag
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Helper to add price.js
+  title: GEO Support API
+  version: "0.01"
+paths:
+  /:
+    post:
+      consumes:
+      - application/json
+      description: get string by ID
+      operationId: get-all-domains
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/modelsstruct.Domains'
+      summary: Get all domains
+  /{id}:
+    post:
+      consumes:
+      - application/json
+      description: get string by ID
+      operationId: set-flag-domain
+      parameters:
+      - description: set flag
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/modelsstruct.Flag'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Set flag to domain
+swagger: "2.0"

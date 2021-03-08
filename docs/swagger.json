@@ -1,0 +1,104 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Helper to add price.js",
+        "title": "GEO Support API",
+        "contact": {},
+        "version": "0.01"
+    },
+    "host": "localhost:8080",
+    "basePath": "/svgg/v1",
+    "paths": {
+        "/": {
+            "post": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all domains",
+                "operationId": "get-all-domains",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Domains"
+                        }
+                    }
+                }
+            }
+        },
+        "/{id}": {
+            "post": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Set flag to domain",
+                "operationId": "set-flag-domain",
+                "parameters": [
+                    {
+                        "description": "set flag",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Flag"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "modelsstruct.Domain": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "flag": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "modelsstruct.Domains": {
+            "type": "object",
+            "properties": {
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/modelsstruct.Domain"
+                    }
+                }
+            }
+        },
+        "modelsstruct.Flag": {
+            "type": "object",
+            "required": [
+                "set_flag"
+            ],
+            "properties": {
+                "set_flag": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

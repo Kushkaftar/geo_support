@@ -8,6 +8,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Set flag to domain
+// @Description get string by ID
+// @ID set-flag-domain
+// @Accept  json
+// @Produce  json
+// @Param input body modelsstruct.Flag true "set flag"
+// @Success 200
+// @Router /api/domains/{id} [post]
 // setFlagDomain ...
 func (h *Handler) setFlagDomain(c *gin.Context) {
 	var f modelsstruct.Flag
@@ -44,6 +52,13 @@ func (h *Handler) setFlagDomain(c *gin.Context) {
 	})
 }
 
+// @Summary Get all domains
+// @Description get string by ID
+// @ID get-all-domains
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} modelsstruct.Domains
+// @Router /api/domains/ [post]
 // getAllDomains ...
 func (h *Handler) getAllDomains(c *gin.Context) {
 	var ds modelsstruct.Domains

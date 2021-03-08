@@ -3,6 +3,13 @@ package handler
 import (
 	"github.com/Kushkaftar/geo_support/pkg/service"
 	"github.com/gin-gonic/gin"
+
+	"github.com/swaggo/gin-swagger" // gin-swagger middleware
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+
+	// swagger embed files
+
+	_ "github.com/Kushkaftar/geo_support/docs"
 )
 
 // Handler ...
@@ -41,6 +48,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			prices.POST("/update_price", h.updatePrices)
 		}
 	}
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return router
 }
