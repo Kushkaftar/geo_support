@@ -17,6 +17,7 @@ type Domains interface {
 type Prices interface {
 	GetAllPrices() ([]modelsstruct.Price, error)
 	UpdatePrice(pr modelsstruct.Price) (int, error)
+	SetPrice(pr modelsstruct.Price) (int, error)
 }
 
 // Offer ...

@@ -15,14 +15,17 @@ type DomainsMysql struct {
 	db *sqlx.DB
 }
 
+// Error ...
 func (m *MyError) Error() string {
 	return " id domain is missing"
 }
 
+// NewDomainsMysql ...
 func NewDomainsMysql(db *sqlx.DB) *DomainsMysql {
 	return &DomainsMysql{db: db}
 }
 
+// GetAllDomains ...
 func (d *DomainsMysql) GetAllDomains() ([]modelsstruct.Domain, error) {
 	var domains []modelsstruct.Domain
 
@@ -33,6 +36,7 @@ func (d *DomainsMysql) GetAllDomains() ([]modelsstruct.Domain, error) {
 	return domains, err
 }
 
+// InsertDomain ...
 func (d *DomainsMysql) InsertDomain(domain string) error {
 	query := fmt.Sprintf("INSERT INTO %s (domain_name) VALUES (?);", domainsTable)
 	row := d.db.QueryRow(query, domain)
@@ -44,6 +48,7 @@ func (d *DomainsMysql) InsertDomain(domain string) error {
 	return nil
 }
 
+// CheckDomain ...
 func (d DomainsMysql) CheckDomain(domain string) (int, error) {
 	var req int
 	query := fmt.Sprintf("SELECT COUNT(1) FROM %s WHERE domain_name=?;", domainsTable)
@@ -51,6 +56,7 @@ func (d DomainsMysql) CheckDomain(domain string) (int, error) {
 	return req, err
 }
 
+// SetFlag ...
 func (d *DomainsMysql) SetFlag(flag, id int) error {
 	var check int
 

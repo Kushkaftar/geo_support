@@ -24,3 +24,8 @@ func (s *ReturnPriceService) GetAllPrices() ([]modelsstruct.Price, error) {
 func (s *ReturnPriceService) UpdatePrice(pr modelsstruct.Price) (int, error) {
 	return s.repo.UpdatePrice(pr)
 }
+
+// SetPrice ...
+func (s *ReturnPriceService) SetPrice(pr modelsstruct.Price) (int, error) {
+	return s.repo.SetPrice(pr)
+}

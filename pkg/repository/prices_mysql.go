@@ -58,3 +58,16 @@ func (p *PricesMysql) UpdatePrice(pr modelsstruct.Price) (int, error) {
 	}
 	return 1, nil
 }
+
+// SetPrice ...
+func (p *PricesMysql) SetPrice(pr modelsstruct.Price) (int, error) {
+
+	query := fmt.Sprintf("INSERT INTO %s (name, geo, country, country_1, country_2, old, new, money, tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);", pricesTable)
+	row := p.db.QueryRow(query, pr.Name, pr.GEO, pr.Country, pr.Country1, pr.Country2, pr.Old, pr.New, pr.Money, pr.Tel)
+
+	if err := row.Err(); err != nil {
+		return 0, err
+	}
+
+	return 1, nil
+}

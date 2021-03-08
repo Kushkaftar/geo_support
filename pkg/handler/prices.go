@@ -21,7 +21,27 @@ func (h *Handler) getAllPrices(c *gin.Context) {
 }
 
 func (h *Handler) setPrices(c *gin.Context) {
+	var p modelsstruct.Price
 
+	if err := c.BindJSON(&p); err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "invalid input body "+err.Error())
+		return
+	}
+
+	check, err := h.services.SetPrice(p)
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "some error "+err.Error())
+		return
+	}
+
+	if check != 1 {
+		newErrorResponse(c, http.StatusBadRequest, "err "+err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"set_price": "ok",
+	})
 }
 
 func (h *Handler) updatePrices(c *gin.Context) {
