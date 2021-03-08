@@ -2,14 +2,18 @@ package repository
 
 import (
 	"fmt"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
 
 const (
-	domainsTable = "domain"
+	domainsTable   = "domain"
+	offerNameTable = "offer_names"
+	pricesTable    = "prices"
 )
 
+// Config ...
 type Config struct {
 	Host     string
 	Port     string
@@ -18,6 +22,7 @@ type Config struct {
 	DBName   string
 }
 
+// NewMysqlDB ...
 func NewMysqlDB(cfg Config) (*sqlx.DB, error) {
 
 	str := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.DBName)

@@ -2,20 +2,32 @@ package repository
 
 import (
 	"fmt"
-	"github.com/Kushkaftar/geo_support/modelsStruct"
+
+	"github.com/Kushkaftar/geo_support/modelsstruct"
 	"github.com/jmoiron/sqlx"
 )
 
+// MyError ...
+type MyError struct{}
+
+// DomainsMysql ...
 type DomainsMysql struct {
 	db *sqlx.DB
 }
 
+// Error ...
+func (m *MyError) Error() string {
+	return " id domain is missing"
+}
+
+// NewDomainsMysql ...
 func NewDomainsMysql(db *sqlx.DB) *DomainsMysql {
 	return &DomainsMysql{db: db}
 }
 
-func (d *DomainsMysql) GetAllDomains() ([]modelsStruct.Domain, error) {
-	var domains []modelsStruct.Domain
+// GetAllDomains ...
+func (d *DomainsMysql) GetAllDomains() ([]modelsstruct.Domain, error) {
+	var domains []modelsstruct.Domain
 
 	query := fmt.Sprintf("SELECT * FROM %s", domainsTable)
 
@@ -24,6 +36,7 @@ func (d *DomainsMysql) GetAllDomains() ([]modelsStruct.Domain, error) {
 	return domains, err
 }
 
+// InsertDomain ...
 func (d *DomainsMysql) InsertDomain(domain string) error {
 	query := fmt.Sprintf("INSERT INTO %s (domain_name) VALUES (?);", domainsTable)
 	row := d.db.QueryRow(query, domain)
@@ -35,6 +48,7 @@ func (d *DomainsMysql) InsertDomain(domain string) error {
 	return nil
 }
 
+// CheckDomain ...
 func (d DomainsMysql) CheckDomain(domain string) (int, error) {
 	var req int
 	query := fmt.Sprintf("SELECT COUNT(1) FROM %s WHERE domain_name=?;", domainsTable)
@@ -42,12 +56,25 @@ func (d DomainsMysql) CheckDomain(domain string) (int, error) {
 	return req, err
 }
 
+// SetFlag ...
 func (d *DomainsMysql) SetFlag(flag, id int) error {
+	var check int
+
+	queryChek := fmt.Sprintf("SELECT COUNT(1) FROM %s WHERE id=?;", domainsTable)
+	err := d.db.Get(&check, queryChek, id)
+	if err != nil {
+		return err
+	}
+
+	if check == 0 {
+		return &MyError{}
+	}
 
 	query := fmt.Sprintf("UPDATE %s SET checked=? WHERE id=?;", domainsTable)
-	row := d.db.QueryRow(query, flag, id)
+	_, err = d.db.Exec(query, flag, id)
 
-	if err := row.Err(); err != nil {
+	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 

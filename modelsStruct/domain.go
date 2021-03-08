@@ -1,4 +1,4 @@
-package modelsStruct
+package modelsstruct
 
 type Domain struct {
 	Id      int    `json:"id" db:"id"`
@@ -8,7 +8,7 @@ type Domain struct {
 }
 
 type Domains struct {
-	Domains []Domain
+	Domains []Domain `json:"domains"`
 }
 
 type Flag struct {

@@ -1,0 +1,235 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Helper to add price.js",
+        "title": "GEO Support API",
+        "contact": {},
+        "version": "0.01"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/domains/": {
+            "post": {
+                "description": "Show all folders in dirrectory",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all domains",
+                "operationId": "get-all-domains",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Domains"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/domains/{id}": {
+            "post": {
+                "description": "set_flag is out parameters: 0 - new(set automatic), 1 - active, 2 - ignore",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Set flag to domain",
+                "operationId": "set-flag-domain",
+                "parameters": [
+                    {
+                        "description": "set flag",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Flag"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/prices/": {
+            "get": {
+                "description": "Get all prices",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all prices",
+                "operationId": "get-all-prices",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Prices"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/prices/set_price": {
+            "post": {
+                "description": "set price",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Set price",
+                "operationId": "set-price",
+                "parameters": [
+                    {
+                        "description": "required",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Price"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "set_price\": \"ok\"}",
+                        "schema": {
+                            "type": "json"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/prices/update_price": {
+            "post": {
+                "description": "Update price",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update price",
+                "operationId": "update-price",
+                "parameters": [
+                    {
+                        "description": "required",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Price"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "update_price\": \"ok\"}",
+                        "schema": {
+                            "type": "json"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "modelsstruct.Domain": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "flag": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "modelsstruct.Domains": {
+            "type": "object",
+            "properties": {
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/modelsstruct.Domain"
+                    }
+                }
+            }
+        },
+        "modelsstruct.Flag": {
+            "type": "object",
+            "required": [
+                "set_flag"
+            ],
+            "properties": {
+                "set_flag": {
+                    "type": "integer"
+                }
+            }
+        },
+        "modelsstruct.Price": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "country1": {
+                    "type": "string"
+                },
+                "country2": {
+                    "type": "string"
+                },
+                "geo": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "money": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "new": {
+                    "type": "string"
+                },
+                "old": {
+                    "type": "string"
+                },
+                "tel": {
+                    "type": "string"
+                }
+            }
+        },
+        "modelsstruct.Prices": {
+            "type": "object",
+            "properties": {
+                "prices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/modelsstruct.Price"
+                    }
+                }
+            }
+        }
+    }
+}
