@@ -84,6 +84,11 @@ paths:
         2 - ignore'
       operationId: set-flag-domain
       parameters:
+      - description: id domain
+        in: query
+        name: id
+        required: true
+        type: integer
       - description: set flag
         in: body
         name: input

@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -13,6 +14,7 @@ import (
 // @ID set-flag-domain
 // @Accept  json
 // @Produce  json
+// @Param id query int true "id domain"
 // @Param input body modelsstruct.Flag true "set flag"
 // @Success 200
 // @Router /api/domains/{id} [post]
@@ -38,9 +40,13 @@ func (h *Handler) setFlagDomain(c *gin.Context) {
 		return
 	}
 
-	err = h.services.SetFlag(f.SetFlag, id)
+	err = h.services.PreSetFlag(f.SetFlag, id)
+
+	// TODO: delete fmt
+	fmt.Println("f.SetFlag", f.SetFlag)
+	fmt.Println("id", id)
 	if err != nil {
-		newErrorResponse(c, http.StatusBadRequest, "set flag is fail"+err.Error())
+		newErrorResponse(c, http.StatusBadRequest, "set flag is fail "+err.Error())
 		return
 	}
 

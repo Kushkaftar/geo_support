@@ -80,3 +80,14 @@ func (d *DomainsMysql) SetFlag(flag, id int) error {
 
 	return nil
 }
+
+// GetDomain ...
+func (d *DomainsMysql) GetDomain(id int) (modelsstruct.Domain, error) {
+	var domain modelsstruct.Domain
+
+	query := fmt.Sprintf("SELECT * FROM %s WHERE id=?;", domainsTable)
+
+	err := d.db.Get(&domain, query, id)
+
+	return domain, err
+}

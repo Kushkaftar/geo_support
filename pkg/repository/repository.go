@@ -11,6 +11,7 @@ type Domains interface {
 	InsertDomain(domain string) error
 	CheckDomain(domain string) (int, error)
 	SetFlag(flag, id int) error
+	GetDomain(id int) (modelsstruct.Domain, error)
 }
 
 // Prices ...

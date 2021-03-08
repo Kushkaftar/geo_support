@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql" // ok
 	"github.com/jmoiron/sqlx"
 )
 
@@ -11,6 +11,7 @@ const (
 	domainsTable   = "domain"
 	offerNameTable = "offer_names"
 	pricesTable    = "prices"
+	foldersTable   = "folders_in_domain"
 )
 
 // Config ...

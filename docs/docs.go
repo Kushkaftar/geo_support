@@ -58,6 +58,13 @@ var doc = `{
                 "operationId": "set-flag-domain",
                 "parameters": [
                     {
+                        "type": "integer",
+                        "description": "id domain",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
                         "description": "set flag",
                         "name": "input",
                         "in": "body",
