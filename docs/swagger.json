@@ -7,11 +7,11 @@
         "version": "0.01"
     },
     "host": "localhost:8080",
-    "basePath": "/svgg/v1",
+    "basePath": "/",
     "paths": {
-        "/": {
+        "/api/domains/": {
             "post": {
-                "description": "get string by ID",
+                "description": "Show all folders in dirrectory",
                 "consumes": [
                     "application/json"
                 ],
@@ -30,9 +30,9 @@
                 }
             }
         },
-        "/{id}": {
+        "/api/domains/{id}": {
             "post": {
-                "description": "get string by ID",
+                "description": "set_flag is out parameters: 0 - new(set automatic), 1 - active, 2 - ignore",
                 "consumes": [
                     "application/json"
                 ],

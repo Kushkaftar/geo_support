@@ -1,4 +1,4 @@
-basePath: /svgg/v1
+basePath: /
 definitions:
   modelsstruct.Domain:
     properties:
@@ -32,11 +32,11 @@ info:
   title: GEO Support API
   version: "0.01"
 paths:
-  /:
+  /api/domains/:
     post:
       consumes:
       - application/json
-      description: get string by ID
+      description: Show all folders in dirrectory
       operationId: get-all-domains
       produces:
       - application/json
@@ -46,11 +46,12 @@ paths:
           schema:
             $ref: '#/definitions/modelsstruct.Domains'
       summary: Get all domains
-  /{id}:
+  /api/domains/{id}:
     post:
       consumes:
       - application/json
-      description: get string by ID
+      description: 'set_flag is out parameters: 0 - new(set automatic), 1 - active,
+        2 - ignore'
       operationId: set-flag-domain
       parameters:
       - description: set flag

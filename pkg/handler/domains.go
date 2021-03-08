@@ -9,7 +9,7 @@ import (
 )
 
 // @Summary Set flag to domain
-// @Description get string by ID
+// @Description set_flag is out parameters: 0 - new(set automatic), 1 - active, 2 - ignore
 // @ID set-flag-domain
 // @Accept  json
 // @Produce  json
@@ -53,7 +53,7 @@ func (h *Handler) setFlagDomain(c *gin.Context) {
 }
 
 // @Summary Get all domains
-// @Description get string by ID
+// @Description Show all folders in dirrectory
 // @ID get-all-domains
 // @Accept  json
 // @Produce  json

@@ -24,9 +24,9 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/": {
+        "/api/domains/": {
             "post": {
-                "description": "get string by ID",
+                "description": "Show all folders in dirrectory",
                 "consumes": [
                     "application/json"
                 ],
@@ -45,9 +45,9 @@ var doc = `{
                 }
             }
         },
-        "/{id}": {
+        "/api/domains/{id}": {
             "post": {
-                "description": "get string by ID",
+                "description": "set_flag is out parameters: 0 - new(set automatic), 1 - active, 2 - ignore",
                 "consumes": [
                     "application/json"
                 ],
@@ -131,7 +131,7 @@ type swaggerInfo struct {
 var SwaggerInfo = swaggerInfo{
 	Version:     "0.01",
 	Host:        "localhost:8080",
-	BasePath:    "/svgg/v1",
+	BasePath:    "/",
 	Schemes:     []string{},
 	Title:       "GEO Support API",
 	Description: "Helper to add price.js",
