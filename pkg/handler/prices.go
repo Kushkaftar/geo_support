@@ -7,6 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Get all prices
+// @Description Get all prices
+// @ID get-all-prices
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} modelsstruct.Prices
+// @Router /api/prices/ [get]
 func (h *Handler) getAllPrices(c *gin.Context) {
 	var ps modelsstruct.Prices
 
@@ -20,6 +27,14 @@ func (h *Handler) getAllPrices(c *gin.Context) {
 	c.JSON(http.StatusOK, ps)
 }
 
+// @Summary Set price
+// @Description set price
+// @ID set-price
+// @Accept  json
+// @Produce  json
+// @Param input body modelsstruct.Price true "required"
+// @Success 200 {json} {"set_price": "ok"}
+// @Router /api/prices/set_price [post]
 func (h *Handler) setPrices(c *gin.Context) {
 	var p modelsstruct.Price
 
@@ -44,6 +59,14 @@ func (h *Handler) setPrices(c *gin.Context) {
 	})
 }
 
+// @Summary Update price
+// @Description Update price
+// @ID update-price
+// @Accept  json
+// @Produce  json
+// @Param input body modelsstruct.Price true "required"
+// @Success 200 {json} {"update_price": "ok"}
+// @Router /api/prices/update_price [post]
 func (h *Handler) updatePrices(c *gin.Context) {
 	var p modelsstruct.Price
 

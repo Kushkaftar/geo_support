@@ -25,6 +25,36 @@ definitions:
     required:
     - set_flag
     type: object
+  modelsstruct.Price:
+    properties:
+      country:
+        type: string
+      country1:
+        type: string
+      country2:
+        type: string
+      geo:
+        type: string
+      id:
+        type: integer
+      money:
+        type: string
+      name:
+        type: string
+      new:
+        type: string
+      old:
+        type: string
+      tel:
+        type: string
+    type: object
+  modelsstruct.Prices:
+    properties:
+      prices:
+        items:
+          $ref: '#/definitions/modelsstruct.Price'
+        type: array
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -66,4 +96,60 @@ paths:
         "200":
           description: ""
       summary: Set flag to domain
+  /api/prices/:
+    get:
+      consumes:
+      - application/json
+      description: Get all prices
+      operationId: get-all-prices
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/modelsstruct.Prices'
+      summary: Get all prices
+  /api/prices/set_price:
+    post:
+      consumes:
+      - application/json
+      description: set price
+      operationId: set-price
+      parameters:
+      - description: required
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/modelsstruct.Price'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'set_price": "ok"}'
+          schema:
+            type: json
+      summary: Set price
+  /api/prices/update_price:
+    post:
+      consumes:
+      - application/json
+      description: Update price
+      operationId: update-price
+      parameters:
+      - description: required
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/modelsstruct.Price'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'update_price": "ok"}'
+          schema:
+            type: json
+      summary: Update price
 swagger: "2.0"

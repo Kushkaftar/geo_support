@@ -20,9 +20,6 @@ import (
 func (h *Handler) setFlagDomain(c *gin.Context) {
 	var f modelsstruct.Flag
 
-	//c.Header("Access-Control-Allow-Origin", "*")
-	//c.Header("Access-Control-Allow-Headers", "access-control-allow-origin, access-control-allow-headers")
-
 	domainID := c.Param("id")
 	id, err := strconv.Atoi(domainID)
 	if err != nil {

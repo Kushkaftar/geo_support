@@ -73,6 +73,91 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/api/prices/": {
+            "get": {
+                "description": "Get all prices",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all prices",
+                "operationId": "get-all-prices",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Prices"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/prices/set_price": {
+            "post": {
+                "description": "set price",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Set price",
+                "operationId": "set-price",
+                "parameters": [
+                    {
+                        "description": "required",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Price"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "set_price\": \"ok\"}",
+                        "schema": {
+                            "type": "json"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/prices/update_price": {
+            "post": {
+                "description": "Update price",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update price",
+                "operationId": "update-price",
+                "parameters": [
+                    {
+                        "description": "required",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modelsstruct.Price"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "update_price\": \"ok\"}",
+                        "schema": {
+                            "type": "json"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -112,6 +197,52 @@ var doc = `{
             "properties": {
                 "set_flag": {
                     "type": "integer"
+                }
+            }
+        },
+        "modelsstruct.Price": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "country1": {
+                    "type": "string"
+                },
+                "country2": {
+                    "type": "string"
+                },
+                "geo": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "money": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "new": {
+                    "type": "string"
+                },
+                "old": {
+                    "type": "string"
+                },
+                "tel": {
+                    "type": "string"
+                }
+            }
+        },
+        "modelsstruct.Prices": {
+            "type": "object",
+            "properties": {
+                "prices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/modelsstruct.Price"
+                    }
                 }
             }
         }
